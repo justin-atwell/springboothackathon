@@ -6,13 +6,6 @@ public class Theater {
     private float latitude;
     private float longitude;
 
-    public Theater(int _id, String _name, float _latitude, float _longitude){
-        this.id = _id;
-        this.name = _name;
-        this.latitude = _latitude;
-        this.longitude = _longitude;
-    }
-
     public int getId() {
         return id;
     }
@@ -27,5 +20,21 @@ public class Theater {
 
     public float getLatitude() {
         return latitude;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 }
