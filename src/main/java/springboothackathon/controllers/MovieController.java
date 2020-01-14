@@ -14,7 +14,6 @@ public class MovieController {
         data[2] = new Movie( 3, "Gemini Man", 5.7f, "", "Thriller");
         data[3] = new Movie( 4, "Joker", 8.6f, "", "Thriller");
         return data;
-
     }
 
     @GetMapping()
