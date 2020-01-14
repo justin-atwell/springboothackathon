@@ -14,8 +14,8 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -77,5 +77,19 @@ public class TheaterControllerTests {
         mockMvc.perform(get("/theaters/id")
                 .param("id", Integer.toString(id)))
                 .andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("bill"))).andReturn().getResponse().getContentAsString();
+    }
+
+    @Test
+    public void addCallsCorrectServiceMethod() throws Exception {
+        Theater theater = new Theater();
+
+        theater.setName("hahaha");
+        theater.setLongitude(444444L);
+        theater.setLatitude(123L);
+        theater.setId(1234);
+
+        mockMvc.perform(post("/theaters/add")).andDo(print()).andExpect(status().isOk());
+
+        verify(service, times(1)).addTheater(theater);
     }
 }

@@ -10,4 +10,6 @@ public interface TheaterService {
     ArrayList<Theater> getAllTheaters();
 
     Theater getTheaterById(int id);
+
+    void addTheater(Theater theater);
 }

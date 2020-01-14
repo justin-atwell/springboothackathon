@@ -19,6 +19,11 @@ public class TheaterServiceImpl implements TheaterService {
     }
 
     public Theater getTheaterById(int id) {
-        return null;
+        return new Theater();
+    }
+
+    @Override
+    public void addTheater(Theater theater) {
+
     }
 }

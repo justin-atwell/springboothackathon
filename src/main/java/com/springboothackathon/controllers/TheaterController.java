@@ -15,6 +15,7 @@ public class TheaterController {
     public TheaterController(TheaterService service) {
         this.service = service;
     }
+
     @GetMapping()
     public ArrayList<Theater> getTheaters()
     {
@@ -26,9 +27,10 @@ public class TheaterController {
         return service.getTheaterById(id);
     }
 
-    @PostMapping()
-    public String add(@PathVariable("id") int id){
-        return "";
+    @PostMapping(value = "/add", method = "")
+    public void add(@RequestBody Theater theater){
+
+         service.addTheater(theater);
     }
 
     @PutMapping("/{id}")
