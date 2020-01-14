@@ -22,8 +22,8 @@ public class TheaterController {
     }
 
     @GetMapping("/{id}")
-    public Theater findById(@PathVariable("id") int id) {
-        return null;
+    public Theater findById(@RequestParam("id") int id) {
+        return service.getTheaterById(id);
     }
 
     @PostMapping()

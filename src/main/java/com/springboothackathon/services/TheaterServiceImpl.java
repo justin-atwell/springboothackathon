@@ -17,4 +17,8 @@ public class TheaterServiceImpl implements TheaterService {
 
         return theaters;
     }
+
+    public Theater getTheaterById(int id) {
+        return null;
+    }
 }

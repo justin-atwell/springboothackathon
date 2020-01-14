@@ -1,20 +1,24 @@
 package com.springboothackathon.controllers;
 
+import com.springboothackathon.models.Theater;
+import com.springboothackathon.services.TheaterService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import com.springboothackathon.models.Theater;
-import com.springboothackathon.services.TheaterService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -56,8 +60,22 @@ public class TheaterControllerTests {
 
         when(service.getAllTheaters()).thenReturn(theaters);
 
-        String result = mockMvc.perform(get("/theaters")).andReturn().getResponse().getContentAsString();
+       mockMvc.perform(get("/theaters")).andExpect(status().isOk()).andReturn().getResponse();
+    }
 
-        assertThat(result.contains(theater.getName()));
+    @Test
+    public void getTheaterByIdReturnsCorrectTheater() throws Exception {
+        Theater theater = new Theater();
+        int id = 4;
+        theater.setId(id);
+        theater.setLatitude(33L);
+        theater.setName("bill");
+        theater.setLongitude(11L);
+
+        when(service.getTheaterById(id)).thenReturn(theater);
+
+        mockMvc.perform(get("/theaters/id")
+                .param("id", Integer.toString(id)))
+                .andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("bill"))).andReturn().getResponse().getContentAsString();
     }
 }
