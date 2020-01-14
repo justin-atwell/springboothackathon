@@ -1,14 +1,15 @@
 package springboothackathon.controllers;
 
-
-import models.Theater;
 import org.springframework.web.bind.annotation.*;
+import springboothackathon.models.Theater;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping(value = "/theaters")
 public class TheaterController {
     @GetMapping()
-    public Theater[] getTheaters() {
+    public ArrayList<Theater> getTheaters() {
         return null;
     }
 

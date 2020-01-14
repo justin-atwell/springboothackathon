@@ -1,7 +1,7 @@
 package springboothackathon.controllers;
 
-import models.Showtime;
 import org.springframework.web.bind.annotation.*;
+import springboothackathon.models.Showtime;
 
 @RestController
 @RequestMapping(value = "/showtimes")
