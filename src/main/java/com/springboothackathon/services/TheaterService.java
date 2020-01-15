@@ -12,4 +12,8 @@ public interface TheaterService {
     Theater getTheaterById(int id);
 
     void addTheater(Theater theater);
+
+    void updateTheater(Theater theater);
+
+    void deleteTheater(Theater theater);
 }

@@ -31,18 +31,19 @@ public class TheaterController {
 
     @RequestMapping(value = "/add", method = {RequestMethod.POST})
     public ResponseEntity add(@RequestBody Theater theater){
-
           service.addTheater(theater);
           return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable("id") int id){
-        return "";
+    public ResponseEntity update(@RequestBody Theater theater){
+        service.updateTheater(theater);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id){
-        return "";
+    public ResponseEntity delete(@RequestBody Theater theater){
+        service.deleteTheater(theater);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

@@ -10,15 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -101,6 +99,33 @@ public class TheaterControllerTests {
                 .andDo(print());
 
         verify(service, times(1)).addTheater(any(Theater.class));
+    }
+
+    @Test
+    public void updateCallsServiceToUpdate() throws Exception {
+        Theater theater = new Theater();
+
+        mockMvc.perform(put("/theaters/update")
+        .content(asJsonString(theater))
+        .contentType(MediaType.APPLICATION_JSON)
+        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
+
+        verify(service, times(1)).updateTheater((any(Theater.class)));
+    }
+
+    @Test
+    public void deleteCallsServiceToDelete() throws Exception {
+        Theater theater = new Theater();
+
+        mockMvc.perform(delete("/theaters/delete")
+        .content(asJsonString(theater))
+        .contentType(MediaType.APPLICATION_JSON)
+        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        verify(service, times(1)).deleteTheater(any(Theater.class));
     }
 
     public static String asJsonString(final Object obj) {

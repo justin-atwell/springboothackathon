@@ -22,8 +22,16 @@ public class TheaterServiceImpl implements TheaterService {
         return new Theater();
     }
 
-    @Override
     public void addTheater(Theater theater) {
+
+    }
+
+    public void updateTheater(Theater theater) {
+
+    }
+
+    @Override
+    public void deleteTheater(Theater theater) {
 
     }
 }
