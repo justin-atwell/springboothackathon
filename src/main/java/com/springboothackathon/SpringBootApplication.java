@@ -26,7 +26,6 @@ public class SpringBootApplication {
             for (String beanName : beanNames) {
                 System.out.println(beanName);
             }
-
         };
     }
 }
