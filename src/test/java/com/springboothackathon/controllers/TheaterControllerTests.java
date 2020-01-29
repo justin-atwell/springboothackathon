@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.*;
@@ -32,16 +31,6 @@ public class TheaterControllerTests {
 
     @Test
     public void getTheatersHappyPath() throws Exception {
-        Theater theater = new Theater();
-        int id = 2;
-        theater.setId(id);
-        theater.setName("kevin");
-        theater.setLatitude(22.3f);
-        theater.setLongitude(22.3f);
-
-        List<Theater> theaters = new ArrayList<Theater>();
-        theaters.add(theater);
-
         mockMvc.perform(get("/theaters"));
 
         verify(service, times(1)).getAllTheaters();

@@ -4,10 +4,11 @@ import com.springboothackathon.models.Theater;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public interface TheaterService {
-    ArrayList<Theater> getAllTheaters();
+    List<Theater> getAllTheaters();
 
     Theater getTheaterById(int id);
 
