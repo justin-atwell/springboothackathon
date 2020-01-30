@@ -1,21 +1,19 @@
 package com.springboothackathon.controllers;
 
+import com.springboothackathon.models.Theater;
+import com.springboothackathon.services.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.springboothackathon.models.Theater;
-import com.springboothackathon.services.TheaterService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/theaters")
 public class TheaterController {
 
-    @Autowired
-    private TheaterService service;
+    private final TheaterService service;
 
     public TheaterController(TheaterService service) {
         this.service = service;
